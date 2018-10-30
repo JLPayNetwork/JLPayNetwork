@@ -44,3 +44,4 @@ Carthage/Build
 Cartfile.resolved
 
 .DS_Store
+*/.DS_Store
