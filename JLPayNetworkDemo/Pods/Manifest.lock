@@ -14,17 +14,28 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - JLPayNetwork (0.0.1):
+    - AFNetworking (~> 3.2.1)
+    - YYCache
+  - YYCache (1.0.4)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.2.1)
+  - JLPayNetwork (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - YYCache
+
+EXTERNAL SOURCES:
+  JLPayNetwork:
+    :path: "../"
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  JLPayNetwork: 6b4b2eaddb137eefdb85f7ee51c07b49aa105f8e
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
-PODFILE CHECKSUM: 1ccb05c3f77a1cfc25e750698799504110828326
+PODFILE CHECKSUM: 4d88117c98fffe425404f81defb9a8a04d9334ab
 
 COCOAPODS: 1.5.3

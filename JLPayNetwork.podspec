@@ -17,14 +17,16 @@ Pod::Spec.new do |s|
 
   s.name         = "JLPayNetwork"
   s.version      = "0.0.1"
-  s.summary      = "JLPayNetwork is a high level request util based on AFNetworking."
+  s.summary      = "JLPayNetwork 是一个基于AFNetworking和YYCache封装的轻量级网络请求工具"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "JLPayNetwork is a high level request util based on AFNetworking. we save it."
+  s.description  = <<-DESC
+                    JLPayNetwork是一个基于AFNetworking和YYCache封装的轻量级网络请求工具,支持本地数据缓存. Support the Objective - C language.
+                DESC
 
   s.homepage     = "https://github.com/JLPayNetwork/JLPayNetwork"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -63,10 +65,10 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
-  s.ios.deployment_target = "8.0"
+  # s.ios.deployment_target = "8.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
@@ -78,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/JLPayNetwork/JLPayNetwork.git", :tag => 'v0.0.1' }
+  s.source       = { :git => "https://github.com/JLPayNetwork/JLPayNetwork.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,8 +91,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  #s.source_files  = 'JLPayNetwork/*.{h,m}'
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "JLPayNetwork/*.{h,m}"
+  # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -133,5 +135,6 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
   s.dependency "AFNetworking", "~> 3.2.1"
+  s.dependency 'YYCache'
 
 end
