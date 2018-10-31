@@ -42,8 +42,8 @@ Pod::Spec.new do |s|
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-
-  s.source       = { :git => "https://github.com/JLPayNetwork/JLPayNetwork.git", :tag => s.version.to_s }
+#.to_s
+  s.source       = { :git => "https://github.com/JLPayNetwork/JLPayNetwork.git", :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
