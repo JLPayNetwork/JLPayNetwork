@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "JLPayNetwork"
-  s.version      = "1.1.0"
+  s.version      = "0.0.1"
   s.summary      = "JLPayNetwork 是一个基于AFNetworking和YYCache封装的轻量级网络请求工具"
 
   # This description is used to generate tags and improve search results.
