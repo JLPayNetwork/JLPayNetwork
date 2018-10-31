@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - JLPayNetwork (0.0.1):
+  - JLPayNetwork (0.0.2):
     - AFNetworking (~> 3.2.1)
     - YYCache
   - YYCache (1.0.4)
@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  JLPayNetwork: c357c5a4de50782f81d5f76d172f72153836579e
+  JLPayNetwork: 68c6afb95c6bf6d8c2884ea587adab177ec4d20d
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
 PODFILE CHECKSUM: 4d88117c98fffe425404f81defb9a8a04d9334ab
