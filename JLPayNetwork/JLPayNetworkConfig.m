@@ -32,9 +32,7 @@
         self.baseUrl         = @"";
         self.securityPolicy  = [AFSecurityPolicy defaultPolicy];
         self.debugLogEnabled = NO;
-        self.isSupportHttps  = NO;
         self.timeOut = self.timeOut > 0? self.timeOut: kTimeout;
-        self.packetEncrypted = NO;
     }
     return self;
 }
