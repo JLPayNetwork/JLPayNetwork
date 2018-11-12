@@ -9,22 +9,22 @@
 
 #import "JLAPI.h"
 
-static NSString *const kBaseURL = @"https://app.jlpay.com:1980/mpos/services";
+static NSString *const kBaseURL = @"";
 
-static NSString *const kAccessCertBaseURL = @"http://172.20.6.21:8898/access/down/app/cert";
+static NSString *const kAccessCertBaseURL = @"";
 
-static NSString *const kBaseLoanURL = @"https://xmpos.jlpay.com:5637/loan/services/";
+static NSString *const kBaseLoanURL = @"";
 
-static NSString *const kConfigXMLURL = @"http://mpos.8g.cn/server.htm";
+static NSString *const kConfigXMLURL = @"";
 
-static NSString *const kH5URL = @"http://static.jlpay.com/mpos/h5";//h5的url
+static NSString *const kH5URL = @"";//h5的url
 
-static NSString *const kLoanH5URL = @"https://xmpos.jlpay.com:5637/loan/h5/";//loan h5的url
+static NSString *const kLoanH5URL = @"";//loan h5的url
 
 //报文加密信息
-static NSString *const LSEncrypted_ID      = @"7688220672320408";
-static NSString *const LSEncrypted_VERSION = @"1.0";
-static NSString *const LSEncrypted_KEY     = @"7222375456522508";
+static NSString *const LSEncrypted_ID      = @"";
+static NSString *const LSEncrypted_VERSION = @"";
+static NSString *const LSEncrypted_KEY     = @"";
 
 /**
  @brief 管理所有接口URL
@@ -35,12 +35,12 @@ static NSString *const LSEncrypted_KEY     = @"7222375456522508";
 {
 
     return @[@{@"title" : @"生产测试环境",
-               @"JLAPI" : @"https://app-pre.jlpay.com:1980/mpos/services",
-               @"JLAccessCertAPI" : @"http://172.20.6.21:8898/access/down/app/cert",
-               @"JLLoanAPI" : @"https://xmpos.jlpay.com:5637/loan/services/",
-               @"ConfigUrl":@"http://172.20.11.100:1980/server.php",
-               @"H5Url":@"http://app-static.jlpay.io/mpos/h5",
-               @"LoanH5Url":@"http://172.20.6.21:5637/loan/h5/"},
+               @"JLAPI" : @"",
+               @"JLAccessCertAPI" : @"",
+               @"JLLoanAPI" : @"",
+               @"ConfigUrl":@"",
+               @"H5Url":@"",
+               @"LoanH5Url":@""},
              
              @{@"title" : @"正式环境",
                @"JLAPI" : kBaseURL,
@@ -51,20 +51,20 @@ static NSString *const LSEncrypted_KEY     = @"7222375456522508";
                @"LoanH5Url":kLoanH5URL},
              
              @{@"title" : @"21环境",
-               @"JLAPI" : @"https://ssl-test.jlpay.com:8898/cpb/mpos/services",//http://172.20.6.21:8898/access/mpos/services  // http://172.20.6.21:8898/cpb/mpos/services
-               @"JLAccessCertAPI" : @"https://ssl-test.jlpay.com:8898/access/down/app/cert",
-               @"JLLoanAPI" : @"http://172.20.6.23:9953/loan/services/",
-               @"ConfigUrl":@"http://172.20.11.100:1980/server.php",
-               @"H5Url":@"http://app-static.jlpay.io/mpos/h5",
-               @"LoanH5Url":@"http://172.20.6.21:5637/loan/h5/"},
+               @"JLAPI" : @"",
+               @"JLAccessCertAPI" : @"",
+               @"JLLoanAPI" : @"",
+               @"ConfigUrl":@"",
+               @"H5Url":@"",
+               @"LoanH5Url":@""},
              
              @{@"title" : @"开发环境",
-               @"JLAPI" : @"http://172.20.102.218:8081/mpos/services/",
-               @"JLAccessCertAPI" : @"http://172.20.6.21:8898/access/down/app/cert",
-               @"JLLoanAPI" : @"http://172.20.102.223:5639/loan/services/",
-               @"ConfigUrl":@"http://172.20.11.100:1980/server.php",
-               @"H5Url":@"http://app-static.jlpay.io/mpos/h5",
-               @"LoanH5Url":@"http://172.20.6.21:5637/loan/h5/"}];
+               @"JLAPI" : @"",
+               @"JLAccessCertAPI" : @"",
+               @"JLLoanAPI" : @"",
+               @"ConfigUrl":@"",
+               @"H5Url":@"",
+               @"LoanH5Url":@""}];
 }
 
 /**
