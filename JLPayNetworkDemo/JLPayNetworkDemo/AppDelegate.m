@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <JLPayNetwork/JLPayNetworkConfig.h>
+#import "JLAPI.h"
+#import "JLApiOpera.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +19,27 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self setNetworkConfig];
     return YES;
+}
+
+- (void)setNetworkConfig {
+    
+    JLPayNetworkConfig *config = [JLPayNetworkConfig sharedConfig];
+    config.baseUrl = [JLAPI getBaseUrlString];
+    config.timeOut = 20.f;
+    
+    NSDictionary *headerDic = [JLApiOpera requestHeader];
+    config.headerDic = headerDic.copy;
+    
+    config.dataEncryptedType = JLPayDataEncryptedTypeCipherAES;
+    config.debugLogEnabled = YES;
+    
+    HttpsAuthModel *model = [[HttpsAuthModel alloc] init];
+    model.p12Name = @"";
+    model.p12Password = @"";
+    model.cerName = @"";
+    config.httpsAuthModel = model;
 }
 
 

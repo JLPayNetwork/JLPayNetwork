@@ -25,12 +25,6 @@ typedef NS_ENUM(NSUInteger, JLPayRequestMethod) {
     /** DELETE请求方法 */
     JLPayRequestMethodDELETE
 };
-typedef NS_ENUM(NSUInteger, JLPayDataEncryptedType) {
-    /** 数据明文传输*/
-    JLPayDataEncryptedTypeDefault,
-    /** 数据密文传输*/ //aes加密
-    JLPayDataEncryptedTypeCipherAES,
-};
 
 /** 缓存方式 */
 typedef NS_ENUM(NSUInteger, JLPayCachePolicy) {
@@ -60,66 +54,14 @@ typedef NS_ENUM(NSUInteger, JLPayNetworkStatus) {
     JLPayNetworkStatusReachableViaWiFi
 };
 
-/** 请求序列化类型 */
-typedef NS_ENUM(NSUInteger, JLPayRequestSerializer) {
-    /** 设置请求数据为JSON格式 */
-    JLPayRequestSerializerJSON,
-    /** 设置请求数据为二进制格式 */
-    JLPayRequestSerializerHTTP
-};
-
-/** 响应序列化类型 */
-typedef NS_ENUM(NSUInteger, JLPayResponseSerializer) {
-    /** 设置响应数据为JSON格式 */
-    JLPayResponsetSerializerJSON,
-    /** 设置响应数据为二进制格式 */
-    JLPayResponseSerializerHTTP
-};
-
 /** 成功的回调 */
-typedef void (^JLPayHttpSuccessBlock)(id responseObject);
+typedef void (^JLPayHttpSuccessBlock)(NSURLSessionDataTask *_Nullable dataTask, id responseObject);
 /** 失败的回调 */
-typedef void (^JLPayHttpFailureBlock)(NSError *error);
+typedef void (^JLPayHttpFailureBlock)(NSURLSessionDataTask *_Nullable dataTask, NSError *error);
 /** 网络状态Block */
 typedef void(^JLPayNetworkStatusBlock)(JLPayNetworkStatus status);
 
 @interface JLPayNetworkClient : NSObject
-
-/** 设置接口根路径 */
-+ (void)setBaseUrl:(NSString *)baseUrl;
-
-///** 设置接口基本参数/公共参数(如:用户ID, Token) */
-//+ (void)setBaseParameters:(NSDictionary *)params;
-
-/** 设置请求头（额外的HTTP请求头字段） */
-+ (void)setRequestHeaderFieldValueDictionary:(NSDictionary *)dic;
-
-/** 设置请求超时时间(默认30s) */
-+ (void)setRequestTimeoutInterval:(NSTimeInterval)timeout;
-
-/** 请求序列化类型 */
-+ (void)setRequestSerializerType:(JLPayRequestSerializer)type;
-
-/** 响应序列化类型 */
-+ (void)setResponseSerializerType:(JLPayResponseSerializer)type;
-
-/** 设置接口请求加密方式 */
-+ (void)setDataEncryptedType:(JLPayDataEncryptedType)type;
-
-/**
- 自发网络请求时 dataTaskWithRequest 自己设置请求头
-
- @param dic 额外的HTTP请求头字段）
- */
-+ (void)setCustomRequestHeaderFieldValueDictionary:(NSDictionary *)dic;
-
-/**
- *  设置自建证书的Https请求
- *
- *  @param cerPath 自建https证书路径
- *  @param validatesDomainName 是否验证域名(默认YES) 如果证书的域名与请求的域名不一致，需设置为NO
- */
-+ (void)setSecurityPolicyWithCerPath:(NSString *)cerPath validatesDomainName:(BOOL)validatesDomainName;
 
 /**
  GET请求方法

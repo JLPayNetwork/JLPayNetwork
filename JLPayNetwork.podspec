@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
   s.name         = "JLPayNetwork"
-  s.version      = "0.0.2"
+  s.version      = "0.0.4"
   s.summary      = "JLPayNetwork 是一个基于AFNetworking和YYCache封装的轻量级网络请求工具"
 
   s.description  = <<-DESC
@@ -43,12 +43,12 @@ Pod::Spec.new do |s|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 #.to_s
-  s.source       = { :git => "https://github.com/JLPayNetwork/JLPayNetwork.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/JLPayNetwork/JLPayNetwork.git", :tag => "v#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
  
-  s.source_files  = "JLPayNetwork/JLPayNetwork/*.{h,m}"
+  s.source_files  = "JLPayNetwork"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -79,6 +79,6 @@ Pod::Spec.new do |s|
   # s.dependency "JSONKit", "~> 1.4"
 
   s.dependency "AFNetworking", "~> 3.2.1"
-  s.dependency 'YYCache'
+  s.dependency "YYKit", "~> 1.0.9"
 
 end

@@ -29,10 +29,15 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.baseUrl         = @"";
-        self.securityPolicy  = [AFSecurityPolicy defaultPolicy];
-        self.debugLogEnabled = NO;
-        self.timeOut = self.timeOut > 0? self.timeOut: kTimeout;
+        self.baseUrl                = @"";
+        self.securityPolicy         = [AFSecurityPolicy defaultPolicy];
+        self.debugLogEnabled        = NO;
+        self.timeOut                = self.timeOut > 0? self.timeOut: kTimeout;
+        self.requestSerializerType  = JLPayRequestSerializerHTTP;
+        self.responseSerializerType = JLPayResponseSerializerHTTP;
+        self.dataEncryptedType      = JLPayDataEncryptedTypeDefault;//默认不加密
+        self.headerDic              = [NSDictionary dictionary];
+        self.httpsAuthModel         = [[HttpsAuthModel alloc] init];
     }
     return self;
 }
@@ -41,5 +46,9 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p>{ baseURL: %@ } ",NSStringFromClass([self class]), self, self.baseUrl];
 }
+
+@end
+
+@implementation HttpsAuthModel
 
 @end

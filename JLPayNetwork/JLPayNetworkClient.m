@@ -16,6 +16,7 @@
 // 电池条上网络活动提示(菊花转动)
 #import "AFNetworkActivityIndicatorManager.h"
 #import "JLPayNetworkConfig.h"
+#import "JLPayHttpsManager.h"
 
 void JLPayNetworkLog(NSString *format, ...) {
 #ifdef DEBUG
@@ -37,10 +38,6 @@ static NSString *_baseUrl;
 static NSMutableArray *_allSessionTask;
 static AFHTTPSessionManager *_sessionManager;
 
-static JLPayDataEncryptedType _dataEncryptedType;
-
-static NSDictionary *customHeaderDic;
-
 
 #pragma mark - 所有的请求task数组
 + (NSMutableArray *)allSessionTask {
@@ -58,7 +55,7 @@ static NSDictionary *customHeaderDic;
 
 + (void)initialize {
     // 创建请求管理者对象
-    _sessionManager = [AFHTTPSessionManager manager];
+    _sessionManager = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:[JLPayNetworkConfig sharedConfig].baseUrl]];
     // 配置响应序列化(设置请求接口回来的时候支持什么类型的数据,设置接收参数类型)
     _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
                                                                  @"text/html",
@@ -81,110 +78,46 @@ static NSDictionary *customHeaderDic;
     
     _sessionManager.securityPolicy = config.securityPolicy;
     
-    // 设置请求参数的格式：二进制格式
-    _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    // 设置服务器返回结果的格式：JSON格式
-    _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    switch (config.requestSerializerType) {
+        case JLPayRequestSerializerHTTP:
+            _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+            break;
+            case JLPayRequestSerializerJSON:
+            _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+            break;
+            
+        default:
+            break;
+    }
+    switch (config.responseSerializerType) {
+        case JLPayResponseSerializerHTTP:
+            _sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            break;
+        case JLPayResponseSerializerJSON:
+            _sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+            break;
+            
+        default:
+            break;
+    }
+    
+    // 设置请求头（额外的HTTP请求头字段，这里可以给请求头添加加密键值对，即加密header/签名）
+    NSDictionary *headerDic = [JLPayNetworkConfig sharedConfig].headerDic;
+    if (headerDic && headerDic.count > 0) {
+        for (NSString *key in headerDic) {
+            [_sessionManager.requestSerializer setValue:headerDic[key] forHTTPHeaderField:key];
+        }
+    }
     // 设置请求超时时间
     _sessionManager.requestSerializer.timeoutInterval = [JLPayNetworkConfig sharedConfig].timeOut;
     // 打开状态栏菊花
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    
-    _dataEncryptedType = JLPayDataEncryptedTypeDefault;//默认不加密
-}
-
-#pragma mark - 设置接口根路径
-+ (void)setBaseUrl:(NSString *)baseUrl {
-    _baseUrl = baseUrl;
-}
-
-//#pragma mark - 设置接口基本参数/公共参数 (如:用户ID, Token)
-//+ (void)setBaseParameters:(NSDictionary *)params {
-//    _baseParameters = params;
-//}
-
-#pragma mark - 设置请求头（额外的HTTP请求头字段，这里可以给请求头添加加密键值对，即加密header/签名）
-+ (void)setRequestHeaderFieldValueDictionary:(NSDictionary *)dic; {
-    if (dic && dic.count > 0) {
-        for (NSString *key in dic.allKeys) {
-            [_sessionManager.requestSerializer setValue:dic[key] forHTTPHeaderField:key];
-        }
+    //请求地址
+    _baseUrl = [JLPayNetworkConfig sharedConfig].baseUrl;
+    //双向认证
+    if (config.httpsAuthModel != nil) {
+        [JLPayHttpsManager httpsAuth:_sessionManager p12:config.httpsAuthModel.p12Name cer:config.httpsAuthModel.cerName p12Password:config.httpsAuthModel.p12Password];
     }
-}
-
-#pragma mark - 设置请求超时时间(默认30s)
-+ (void)setRequestTimeoutInterval:(NSTimeInterval)timeout {
-    _sessionManager.requestSerializer.timeoutInterval = timeout;
-}
-
-#pragma mark - 设置请求序列化类型
-+ (void)setRequestSerializerType:(JLPayRequestSerializer)type {
-    switch (type) {
-        case JLPayRequestSerializerHTTP:
-        {
-            _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        }
-            break;
-        case JLPayRequestSerializerJSON:
-        {
-            _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
-#pragma mark - 设置响应序列化类型
-+ (void)setResponseSerializerType:(JLPayResponseSerializer)type {
-    switch (type) {
-        case JLPayResponseSerializerHTTP:
-        {
-            _sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        }
-            break;
-        case JLPayResponsetSerializerJSON:
-        {
-            _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
-/** 设置接口请求加密方式 */
-+ (void)setDataEncryptedType:(JLPayDataEncryptedType)type
-{
-    _dataEncryptedType = type;
-}
-
-/**
- 自发网络请求时 dataTaskWithRequest 自己设置请求头
- 
- @param dic 额外的HTTP请求头字段）
- */
-+ (void)setCustomRequestHeaderFieldValueDictionary:(NSDictionary *)dic
-{
-    customHeaderDic = dic.copy;
-}
-
-#pragma mark - 验证https证书
-// 参考链接:http://blog.csdn.net/syg90178aw/article/details/52839103
-+ (void)setSecurityPolicyWithCerPath:(NSString *)cerPath validatesDomainName:(BOOL)validatesDomainName {
-    // 先导入证书 证书由服务端生成，具体由服务端人员操作
-    // NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"xxx" ofType:@"cer"]; //证书的路径
-    NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
-    // 使用证书验证模式：AFSSLPinningModeCertificate
-    AFSecurityPolicy *securitypolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    // 是否允许无效证书（也就是自建的证书），默认为NO；如果需要验证自建证书，需要设置为YES
-    securitypolicy.allowInvalidCertificates = YES;
-    // 是否需要验证域名，默认为YES。假如证书的域名与你请求的域名不一致，需把该项设置为NO；
-    securitypolicy.validatesDomainName = validatesDomainName;
-    securitypolicy.pinnedCertificates = [[NSSet alloc] initWithObjects:cerData, nil];
-    _sessionManager.securityPolicy = securitypolicy;
 }
 
 #pragma mark - GET请求方法
@@ -232,54 +165,55 @@ static NSDictionary *customHeaderDic;
     if (cachePolicy == JLPayCachePolicyNetworkOnly) {
         [self requestWithMethod:method url:url params:params success:successBlock failure:failureBlock];
     } else if (cachePolicy == JLPayCachePolicyNetworkAndSaveCache) {
-        [self requestWithMethod:method url:url params:params success:^(id responseObject) {
+        [self requestWithMethod:method url:url params:params success:^(NSURLSessionDataTask * _Nonnull dataTask, id  _Nonnull responseObject) {
             // 更新本地缓存
             [JLPayCache saveHttpCache:responseObject url:url params:params];
-            successBlock ? successBlock(responseObject) : nil;
-        } failure:^(NSError *error) {
-            failureBlock ? failureBlock(error) : nil;
+            successBlock ? successBlock(dataTask, responseObject) : nil;
+        } failure:^(NSURLSessionDataTask * _Nonnull dataTask, NSError * _Nonnull error) {
+            failureBlock ? failureBlock(dataTask, error) : nil;
         }];
     } else if (cachePolicy == JLPayCachePolicyNetworkElseCache) {
-        [self requestWithMethod:method url:url params:params success:^(id responseObject) {
-            successBlock ? successBlock(responseObject) : nil;
-        } failure:^(NSError *error) {
+        
+        [self requestWithMethod:method url:url params:params success:^(NSURLSessionDataTask * _Nonnull dataTask, id  _Nonnull responseObject) {
+            successBlock ? successBlock(dataTask, responseObject) : nil;
+        } failure:^(NSURLSessionDataTask * _Nonnull dataTask, NSError * _Nonnull error) {
             [JLPayCache getHttpCache:url params:params block:^(id<NSCoding> object) {
                 if (object) {
-                    successBlock ? successBlock(object) : nil;
+                    successBlock ? successBlock(dataTask, object) : nil;
                 } else {
-                    failureBlock ? failureBlock(error) : nil;
+                    failureBlock ? failureBlock(dataTask, error) : nil;
                 }
             }];
         }];
     } else if (cachePolicy == JLPayCachePolicyCacheOnly) {
         [JLPayCache getHttpCache:url params:params block:^(id<NSCoding> object) {
-            successBlock ? successBlock(object) : nil;
+            successBlock ? successBlock(nil, object) : nil;
         }];
     } else if (cachePolicy == JLPayCachePolicyCacheElseNetwork) {
         // 先从缓存读取数据
         [JLPayCache getHttpCache:url params:params block:^(id<NSCoding> object) {
             if (object) {
-                successBlock ? successBlock(object) : nil;
+                successBlock ? successBlock(nil,object) : nil;
             } else {
                 // 如果没有缓存再从网络获取
-                [self requestWithMethod:method url:url params:params success:^(id responseObject) {
-                    successBlock ? successBlock(responseObject) : nil;
-                } failure:^(NSError *error) {
-                    failureBlock ? failureBlock(error) : nil;
+                [self requestWithMethod:method url:url params:params success:^(NSURLSessionDataTask * _Nonnull dataTask, id  _Nonnull responseObject) {
+                    successBlock ? successBlock(dataTask, responseObject) : nil;
+                } failure:^(NSURLSessionDataTask * _Nonnull dataTask, NSError * _Nonnull error) {
+                    failureBlock ? failureBlock(dataTask, error) : nil;
                 }];
             }
         }];
     } else if (cachePolicy == JLPayCachePolicyCacheThenNetwork) {
         // 先从缓存读取数据（这种情况successBlock调用两次）
         [JLPayCache getHttpCache:url params:params block:^(id<NSCoding> object) {
-            successBlock ? successBlock(object) : nil;
+            successBlock ? successBlock(nil, object) : nil;
             // 再从网络获取
-            [self requestWithMethod:method url:url params:params success:^(id responseObject) {
+            [self requestWithMethod:method url:url params:params success:^(NSURLSessionDataTask * _Nonnull dataTask, id  _Nonnull responseObject) {
                 // 更新缓存
                 [JLPayCache saveHttpCache:responseObject url:url params:params];
-                successBlock ? successBlock(responseObject) : nil;
-            } failure:^(NSError *error) {
-                failureBlock ? failureBlock(error) : nil;
+                successBlock ? successBlock(dataTask, responseObject) : nil;
+            } failure:^(NSURLSessionDataTask * _Nonnull dataTask, NSError * _Nonnull error) {
+                failureBlock ? failureBlock(nil, error) : nil;
             }];
         }];
     } else {
@@ -295,9 +229,12 @@ static NSDictionary *customHeaderDic;
                   success:(JLPayHttpSuccessBlock)successBlock
                   failure:(JLPayHttpFailureBlock)failureBlock {
     //post请求并且需要aes加密
-    if (method == JLPayRequestMethodPOST && _dataEncryptedType == JLPayDataEncryptedTypeCipherAES) {
+    if (method == JLPayRequestMethodPOST && [JLPayNetworkConfig sharedConfig].dataEncryptedType == JLPayDataEncryptedTypeCipherAES) {
+        
         NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:url parameters:nil error:nil];
-        [[self class] setCustomrequestHeader:request headers:customHeaderDic];
+        
+        [[self class] setCustomrequestHeader:request headers:[JLPayNetworkConfig sharedConfig].headerDic];
+        
         [request setTimeoutInterval:[JLPayNetworkConfig sharedConfig].timeOut];
         [request setHTTPBody:params];
         
@@ -305,9 +242,9 @@ static NSDictionary *customHeaderDic;
         dataTask = [_sessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             
             if (error == nil) {
-                successBlock? successBlock(responseObject):nil;
+                successBlock? successBlock(dataTask, responseObject):nil;
             }else {
-                failureBlock?failureBlock(error):nil;
+                failureBlock?failureBlock(dataTask, error):nil;
             }
             [[self allSessionTask] removeObject:dataTask];
         }];
@@ -332,13 +269,13 @@ static NSDictionary *customHeaderDic;
                 JLPayNetworkLog(@"----------------- end -------------------");
             }
             [[self allSessionTask] removeObject:task];
-            successBlock ? successBlock(responseObject) : nil;
+            successBlock ? successBlock(task, responseObject) : nil;
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             if ([JLPayNetworkConfig sharedConfig].debugLogEnabled) {
                 JLPayNetworkLog(@"请求失败：%@", error);
                 JLPayNetworkLog(@"----------------- end -------------------");
             }
-            failureBlock ? failureBlock(error) : nil;
+            failureBlock ? failureBlock(task, error) : nil;
             [[self allSessionTask] removeObject:task];
         }];
     }

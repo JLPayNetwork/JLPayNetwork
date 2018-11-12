@@ -10,6 +10,23 @@
 		8DDED0245E7E845FC4944116 /* libPods-JLPayNetworkDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88ECE5BA256A52BFE493E486 /* libPods-JLPayNetworkDemoTests.a */; };
 		B21E0B30F0613A6EE8FCF697 /* libPods-JLPayNetworkDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 774618DED81F2910694C7840 /* libPods-JLPayNetworkDemo.a */; };
 		BF8C3CCBA4375A2BFDD79FB7 /* libPods-JLPayNetworkDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7F934B29435A6F30C609A3 /* libPods-JLPayNetworkDemoUITests.a */; };
+		D6529E502192C08A00AE7E95 /* JLApiError.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E4F2192C08A00AE7E95 /* JLApiError.m */; };
+		D6529E69219435B500AE7E95 /* JLTicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E66219435B500AE7E95 /* JLTicketManager.m */; };
+		D6529E6A219435B500AE7E95 /* JLTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E68219435B500AE7E95 /* JLTicketModel.m */; };
+		D6529E6D219435D800AE7E95 /* JLAccCertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E6C219435D800AE7E95 /* JLAccCertManager.m */; };
+		D6529E70219436BE00AE7E95 /* JLAppCertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E6F219436BE00AE7E95 /* JLAppCertModel.m */; };
+		D6529E7321990DDD00AE7E95 /* JLAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E7221990DDD00AE7E95 /* JLAPI.m */; };
+		D6529E76219924DC00AE7E95 /* NSDate+JLDateFomtter.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E75219924DC00AE7E95 /* NSDate+JLDateFomtter.m */; };
+		D6529E792199494100AE7E95 /* JLApiOpera+Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E782199494100AE7E95 /* JLApiOpera+Encrypt.m */; };
+		D6529E7C21995FA900AE7E95 /* JLApiParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E7A21995FA900AE7E95 /* JLApiParamModel.m */; };
+		D6529E7F21995FE700AE7E95 /* JsonResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D6529E7E21995FE700AE7E95 /* JsonResult.m */; };
+		D6BB9CAA218A91AF000BE1D6 /* JLPayNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB9CA9218A91AF000BE1D6 /* JLPayNetworkHelper.m */; };
+		D6BB9CB2218BE6BA000BE1D6 /* JLApiOpera.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB9CB1218BE6BA000BE1D6 /* JLApiOpera.m */; };
+		D6BB9CB8218BE796000BE1D6 /* libsecret.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BB9CB6218BE796000BE1D6 /* libsecret.a */; };
+		D6BB9CBB218BE7B7000BE1D6 /* JLAES128Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB9CBA218BE7B7000BE1D6 /* JLAES128Helper.m */; };
+		D6BB9CBE218BE7CF000BE1D6 /* JLRSAHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB9CBD218BE7CF000BE1D6 /* JLRSAHelper.m */; };
+		D6BB9CC1218BEDE8000BE1D6 /* JLApiTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D6BB9CC0218BEDE8000BE1D6 /* JLApiTools.m */; };
+		D6CD90BC219197C1001C7AC4 /* JLApiOpera+Accert.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CD90BB219197C1001C7AC4 /* JLApiOpera+Accert.m */; };
 		D6DD72D521829BA60085E4DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DD72D421829BA60085E4DB /* AppDelegate.m */; };
 		D6DD72D821829BA60085E4DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DD72D721829BA60085E4DB /* ViewController.m */; };
 		D6DD72DB21829BA60085E4DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6DD72D921829BA60085E4DB /* Main.storyboard */; };
@@ -47,6 +64,40 @@
 		B8D4E9AEDE894C4321F08862 /* Pods-JLPayNetworkDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JLPayNetworkDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JLPayNetworkDemoTests/Pods-JLPayNetworkDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C71275C512A59F6BB8677B9F /* Pods-JLPayNetworkDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JLPayNetworkDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JLPayNetworkDemo/Pods-JLPayNetworkDemo.release.xcconfig"; sourceTree = "<group>"; };
 		D1D2164E4A2629FE083D5E64 /* Pods-JLPayNetworkDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JLPayNetworkDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JLPayNetworkDemoUITests/Pods-JLPayNetworkDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6529E4E2192C08A00AE7E95 /* JLApiError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApiError.h; sourceTree = "<group>"; };
+		D6529E4F2192C08A00AE7E95 /* JLApiError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApiError.m; sourceTree = "<group>"; };
+		D6529E65219435B500AE7E95 /* JLTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLTicketModel.h; sourceTree = "<group>"; };
+		D6529E66219435B500AE7E95 /* JLTicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLTicketManager.m; sourceTree = "<group>"; };
+		D6529E67219435B500AE7E95 /* JLTicketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLTicketManager.h; sourceTree = "<group>"; };
+		D6529E68219435B500AE7E95 /* JLTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLTicketModel.m; sourceTree = "<group>"; };
+		D6529E6B219435D800AE7E95 /* JLAccCertManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAccCertManager.h; sourceTree = "<group>"; };
+		D6529E6C219435D800AE7E95 /* JLAccCertManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAccCertManager.m; sourceTree = "<group>"; };
+		D6529E6E219436BE00AE7E95 /* JLAppCertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAppCertModel.h; sourceTree = "<group>"; };
+		D6529E6F219436BE00AE7E95 /* JLAppCertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAppCertModel.m; sourceTree = "<group>"; };
+		D6529E7121990DDD00AE7E95 /* JLAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLAPI.h; sourceTree = "<group>"; };
+		D6529E7221990DDD00AE7E95 /* JLAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLAPI.m; sourceTree = "<group>"; };
+		D6529E74219924DC00AE7E95 /* NSDate+JLDateFomtter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JLDateFomtter.h"; sourceTree = "<group>"; };
+		D6529E75219924DC00AE7E95 /* NSDate+JLDateFomtter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JLDateFomtter.m"; sourceTree = "<group>"; };
+		D6529E772199494100AE7E95 /* JLApiOpera+Encrypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JLApiOpera+Encrypt.h"; sourceTree = "<group>"; };
+		D6529E782199494100AE7E95 /* JLApiOpera+Encrypt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JLApiOpera+Encrypt.m"; sourceTree = "<group>"; };
+		D6529E7A21995FA900AE7E95 /* JLApiParamModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLApiParamModel.m; sourceTree = "<group>"; };
+		D6529E7B21995FA900AE7E95 /* JLApiParamModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLApiParamModel.h; sourceTree = "<group>"; };
+		D6529E7D21995FE700AE7E95 /* JsonResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonResult.h; sourceTree = "<group>"; };
+		D6529E7E21995FE700AE7E95 /* JsonResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonResult.m; sourceTree = "<group>"; };
+		D6BB9CA8218A91AF000BE1D6 /* JLPayNetworkHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLPayNetworkHelper.h; sourceTree = "<group>"; };
+		D6BB9CA9218A91AF000BE1D6 /* JLPayNetworkHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLPayNetworkHelper.m; sourceTree = "<group>"; };
+		D6BB9CB0218BE6BA000BE1D6 /* JLApiOpera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApiOpera.h; sourceTree = "<group>"; };
+		D6BB9CB1218BE6BA000BE1D6 /* JLApiOpera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApiOpera.m; sourceTree = "<group>"; };
+		D6BB9CB6218BE796000BE1D6 /* libsecret.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsecret.a; sourceTree = "<group>"; };
+		D6BB9CB7218BE796000BE1D6 /* secret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secret.h; sourceTree = "<group>"; };
+		D6BB9CB9218BE7B7000BE1D6 /* JLAES128Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLAES128Helper.h; sourceTree = "<group>"; };
+		D6BB9CBA218BE7B7000BE1D6 /* JLAES128Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLAES128Helper.m; sourceTree = "<group>"; };
+		D6BB9CBC218BE7CF000BE1D6 /* JLRSAHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLRSAHelper.h; sourceTree = "<group>"; };
+		D6BB9CBD218BE7CF000BE1D6 /* JLRSAHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLRSAHelper.m; sourceTree = "<group>"; };
+		D6BB9CBF218BEDE8000BE1D6 /* JLApiTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLApiTools.h; sourceTree = "<group>"; };
+		D6BB9CC0218BEDE8000BE1D6 /* JLApiTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLApiTools.m; sourceTree = "<group>"; };
+		D6CD90BA219197C1001C7AC4 /* JLApiOpera+Accert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JLApiOpera+Accert.h"; sourceTree = "<group>"; };
+		D6CD90BB219197C1001C7AC4 /* JLApiOpera+Accert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JLApiOpera+Accert.m"; sourceTree = "<group>"; };
 		D6DD72D021829BA60085E4DB /* JLPayNetworkDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JLPayNetworkDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6DD72D321829BA60085E4DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D6DD72D421829BA60085E4DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -71,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B21E0B30F0613A6EE8FCF697 /* libPods-JLPayNetworkDemo.a in Frameworks */,
+				D6BB9CB8218BE796000BE1D6 /* libsecret.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +158,108 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D6529E5C21942DBB00AE7E95 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				D6529E63219435B500AE7E95 /* JLAccCertManager */,
+				D6529E64219435B500AE7E95 /* JLTicketManager */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		D6529E63219435B500AE7E95 /* JLAccCertManager */ = {
+			isa = PBXGroup;
+			children = (
+				D6529E6B219435D800AE7E95 /* JLAccCertManager.h */,
+				D6529E6C219435D800AE7E95 /* JLAccCertManager.m */,
+				D6529E6E219436BE00AE7E95 /* JLAppCertModel.h */,
+				D6529E6F219436BE00AE7E95 /* JLAppCertModel.m */,
+			);
+			path = JLAccCertManager;
+			sourceTree = "<group>";
+		};
+		D6529E64219435B500AE7E95 /* JLTicketManager */ = {
+			isa = PBXGroup;
+			children = (
+				D6529E67219435B500AE7E95 /* JLTicketManager.h */,
+				D6529E66219435B500AE7E95 /* JLTicketManager.m */,
+				D6529E65219435B500AE7E95 /* JLTicketModel.h */,
+				D6529E68219435B500AE7E95 /* JLTicketModel.m */,
+			);
+			path = JLTicketManager;
+			sourceTree = "<group>";
+		};
+		D6BB9CA7218A9079000BE1D6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D6BB9CC2218C2044000BE1D6 /* NetModel */,
+				D6BB9CAF218BE02F000BE1D6 /* ApiTools */,
+				D6BB9CA8218A91AF000BE1D6 /* JLPayNetworkHelper.h */,
+				D6BB9CA9218A91AF000BE1D6 /* JLPayNetworkHelper.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D6BB9CAF218BE02F000BE1D6 /* ApiTools */ = {
+			isa = PBXGroup;
+			children = (
+				D6529E7121990DDD00AE7E95 /* JLAPI.h */,
+				D6529E7221990DDD00AE7E95 /* JLAPI.m */,
+				D6BB9CB3218BE75D000BE1D6 /* AES128Helper */,
+				D6BB9CB4218BE75D000BE1D6 /* RSAHelper */,
+				D6BB9CB0218BE6BA000BE1D6 /* JLApiOpera.h */,
+				D6BB9CB1218BE6BA000BE1D6 /* JLApiOpera.m */,
+				D6BB9CBF218BEDE8000BE1D6 /* JLApiTools.h */,
+				D6BB9CC0218BEDE8000BE1D6 /* JLApiTools.m */,
+				D6529E772199494100AE7E95 /* JLApiOpera+Encrypt.h */,
+				D6529E782199494100AE7E95 /* JLApiOpera+Encrypt.m */,
+				D6CD90BA219197C1001C7AC4 /* JLApiOpera+Accert.h */,
+				D6CD90BB219197C1001C7AC4 /* JLApiOpera+Accert.m */,
+				D6529E4E2192C08A00AE7E95 /* JLApiError.h */,
+				D6529E4F2192C08A00AE7E95 /* JLApiError.m */,
+			);
+			path = ApiTools;
+			sourceTree = "<group>";
+		};
+		D6BB9CB3218BE75D000BE1D6 /* AES128Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D6BB9CB5218BE796000BE1D6 /* secret */,
+				D6BB9CB9218BE7B7000BE1D6 /* JLAES128Helper.h */,
+				D6BB9CBA218BE7B7000BE1D6 /* JLAES128Helper.m */,
+			);
+			path = AES128Helper;
+			sourceTree = "<group>";
+		};
+		D6BB9CB4218BE75D000BE1D6 /* RSAHelper */ = {
+			isa = PBXGroup;
+			children = (
+				D6BB9CBC218BE7CF000BE1D6 /* JLRSAHelper.h */,
+				D6BB9CBD218BE7CF000BE1D6 /* JLRSAHelper.m */,
+			);
+			path = RSAHelper;
+			sourceTree = "<group>";
+		};
+		D6BB9CB5218BE796000BE1D6 /* secret */ = {
+			isa = PBXGroup;
+			children = (
+				D6BB9CB6218BE796000BE1D6 /* libsecret.a */,
+				D6BB9CB7218BE796000BE1D6 /* secret.h */,
+			);
+			path = secret;
+			sourceTree = "<group>";
+		};
+		D6BB9CC2218C2044000BE1D6 /* NetModel */ = {
+			isa = PBXGroup;
+			children = (
+				D6529E7D21995FE700AE7E95 /* JsonResult.h */,
+				D6529E7E21995FE700AE7E95 /* JsonResult.m */,
+				D6529E7B21995FA900AE7E95 /* JLApiParamModel.h */,
+				D6529E7A21995FA900AE7E95 /* JLApiParamModel.m */,
+			);
+			path = NetModel;
+			sourceTree = "<group>";
+		};
 		D6DD72C721829BA60085E4DB = {
 			isa = PBXGroup;
 			children = (
@@ -131,10 +285,14 @@
 		D6DD72D221829BA60085E4DB /* JLPayNetworkDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D6529E5C21942DBB00AE7E95 /* Other */,
+				D6BB9CA7218A9079000BE1D6 /* Network */,
 				D6DD72D321829BA60085E4DB /* AppDelegate.h */,
 				D6DD72D421829BA60085E4DB /* AppDelegate.m */,
 				D6DD72D621829BA60085E4DB /* ViewController.h */,
 				D6DD72D721829BA60085E4DB /* ViewController.m */,
+				D6529E74219924DC00AE7E95 /* NSDate+JLDateFomtter.h */,
+				D6529E75219924DC00AE7E95 /* NSDate+JLDateFomtter.m */,
 				D6DD72D921829BA60085E4DB /* Main.storyboard */,
 				D6DD72DC21829BBA0085E4DB /* Assets.xcassets */,
 				D6DD72DE21829BBA0085E4DB /* LaunchScreen.storyboard */,
@@ -362,9 +520,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6529E76219924DC00AE7E95 /* NSDate+JLDateFomtter.m in Sources */,
+				D6BB9CC1218BEDE8000BE1D6 /* JLApiTools.m in Sources */,
 				D6DD72D821829BA60085E4DB /* ViewController.m in Sources */,
+				D6BB9CB2218BE6BA000BE1D6 /* JLApiOpera.m in Sources */,
+				D6529E502192C08A00AE7E95 /* JLApiError.m in Sources */,
+				D6BB9CAA218A91AF000BE1D6 /* JLPayNetworkHelper.m in Sources */,
+				D6529E70219436BE00AE7E95 /* JLAppCertModel.m in Sources */,
+				D6529E7F21995FE700AE7E95 /* JsonResult.m in Sources */,
+				D6CD90BC219197C1001C7AC4 /* JLApiOpera+Accert.m in Sources */,
+				D6BB9CBE218BE7CF000BE1D6 /* JLRSAHelper.m in Sources */,
+				D6529E6A219435B500AE7E95 /* JLTicketModel.m in Sources */,
+				D6529E7321990DDD00AE7E95 /* JLAPI.m in Sources */,
+				D6BB9CBB218BE7B7000BE1D6 /* JLAES128Helper.m in Sources */,
+				D6529E6D219435D800AE7E95 /* JLAccCertManager.m in Sources */,
 				D6DD72E321829BBA0085E4DB /* main.m in Sources */,
+				D6529E7C21995FA900AE7E95 /* JLApiParamModel.m in Sources */,
+				D6529E69219435B500AE7E95 /* JLTicketManager.m in Sources */,
 				D6DD72D521829BA60085E4DB /* AppDelegate.m in Sources */,
+				D6529E792199494100AE7E95 /* JLApiOpera+Encrypt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +718,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JLPayNetworkDemo/Network/ApiTools/AES128Helper/secret",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jlpay.lishua.JLPayNetworkDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "* AppStore开发";
@@ -563,6 +741,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JLPayNetworkDemo/Network/ApiTools/AES128Helper/secret",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jlpay.lishua.JLPayNetworkDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
