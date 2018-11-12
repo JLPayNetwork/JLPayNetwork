@@ -85,13 +85,13 @@ static NSString *const LSEncrypted_KEY     = @"";
                @"Encrypted_VERSION":LSEncrypted_VERSION},
              
              @{@"title" : @"21环境",
-               @"Encrypted_ID" : @"201807245623211",
-               @"Encrypted_KEY" : @"Abc123Jlpay20182",
+               @"Encrypted_ID" : @"",
+               @"Encrypted_KEY" : @"",
                @"Encrypted_VERSION":@"1.0"},
              
              @{@"title" : @"开发环境",
-               @"Encrypted_ID" : @"201807245623211",
-               @"Encrypted_KEY" : @"Abc123Jlpay20182",
+               @"Encrypted_ID" : @"",
+               @"Encrypted_KEY" : @"",
                @"Encrypted_VERSION":@"1.0"}];
 }
 
